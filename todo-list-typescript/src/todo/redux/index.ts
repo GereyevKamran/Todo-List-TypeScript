@@ -1,16 +1,12 @@
 import * as types from '../types/types';
 import { ActionTypes } from '../actionTypes/actionTypes';
 
-export type InitialStateType = {
-    tasks: Array<types.taskType>;
-};
-
-const initialState: InitialStateType = {
+const initialState: types.InitialStateType = {
     tasks: [],
 };
 
-
-const reducer = (state = initialState, action: any): InitialStateType => {
+// @ts-ignore
+const reducer = (state = initialState, action: any): types.InitialStateType => {
     const { type, data } = action;
 
     switch (type) {
@@ -18,6 +14,16 @@ const reducer = (state = initialState, action: any): InitialStateType => {
             return {
                 ...state,
                 tasks: [...state.tasks, data],
+            }
+        case ActionTypes.DELETE_TASK:
+            return {
+                ...state,
+                tasks: state.tasks.filter(task => task.id !== data)  
+            }
+        case ActionTypes.CHECK_TASK:
+            return {
+                ...state,
+                tasks: state.tasks.map(task => task.id === data ? { ...task, isDone: !task.isDone } : task)
             }
         default:
             return state

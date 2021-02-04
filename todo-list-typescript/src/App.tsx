@@ -1,5 +1,6 @@
-import React, { memo } from 'react';
-import Todo from './todo/todo';
+import React from 'react';
+//import { Props } from './todo/index';
+import Todo from './todo';
 import './App.css';
 
 function App() {
@@ -10,4 +11,4 @@ function App() {
   );
 }
 
-export default memo(App);
+export default App;

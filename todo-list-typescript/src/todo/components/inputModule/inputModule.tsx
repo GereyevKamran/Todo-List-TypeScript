@@ -2,11 +2,13 @@ import React, { FC } from 'react';
 import './index.css'
 
 export interface Props {
+    value: string;
     createTask: any;
     getInputValue: Function;
 }
 const InputModule:FC<Props> = props => {
     const {
+        value,
         createTask,
         getInputValue,
     } = props;
@@ -14,17 +16,15 @@ const InputModule:FC<Props> = props => {
     return(
         <div className={'input-module_wrapper wrapper'}>
             <div className={'wrapper_input-wrapper input-wrapper'}>
-                <input
-                    onChange={(event => getInputValue(event.target.value))}
-                    className={'input-wrapper_input'}
-                    type={'text'}/>
+                <input onChange={(event => getInputValue(event.target.value))}
+                       className={'input-wrapper_input'}
+                       type={'text'}
+                       value={value}/>
             </div>
             <div className={'wrapper_button-wrapper button-wrapper'}>
-                <button
-                    onClick={createTask}
-                    className={'button-wrapper_button'}>
-                    Add
-                </button>
+                <button onClick={createTask}
+                        className={'button-wrapper_button'}
+                        children={'Add'}/>
             </div>
         </div>
     )
